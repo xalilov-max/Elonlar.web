@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add news</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_news.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="{% url 'add_news' %}">
+        <button>Add News</button>
+    </a>
+    <ul>
+        <li><a href="{% url 'homepage' %}">Asosiy sahifa</a></li>
+        <li><a href="#">Hamma elonlar</a></li>
+        <li><a href="#">Maishiy texnika</a></li>
+        <li><a href="#">Avtomobillar</a></li>
+        <li><a href="#">Uy jihozlari</a></li>
+    </ul>
+</nav>
+
+<form method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="content">content:</label>
+    <textarea id="content" name="content" required></textarea><br><br>
+
+    <label for="image">Image:</label>
+    <input type="file" id="image" name="image" required><br><br>
+
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+    <input type="submit" value="Add News">
+</form>
+
+
+
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>About Us</h4>
+            <p>Your trusted source for breaking news, analysis, and features from around the world.</p>
+        </div>
+
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="{% url 'homepage' %}">Asosiy sahifa</a></li>
+                <li><a href="#">Hamma elonlar</a></li>
+                <li><a href="#">Maishiy texnika</a></li>
+                <li><a href="#">Avtomobillar</a></li>
+                <li><a href="#">Uy jihozlari</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: info@elonwebsite.com</p>
+            <p>Phone: +998903012536</p>
+            <p>Fergana , Uzbekistan</p>
+        </div>
+
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 NewsWebsite. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
